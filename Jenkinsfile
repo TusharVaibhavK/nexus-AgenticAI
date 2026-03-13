@@ -6,6 +6,7 @@ pipeline {
     }
 
     environment {
+        SONAR_PROJECT = 'nexus-agentic-ai'
         DOCKER_REGISTRY = 'docker.io'
         DOCKER_CREDENTIALS_ID = 'docker-cred'
         DOCKER_USERNAME = 'trahulprabhu38'
