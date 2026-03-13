@@ -2,6 +2,7 @@ import os
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from validator import SQLValidator
 
@@ -10,6 +11,9 @@ DB_URI = os.getenv("DB_URI", "postgresql://user:password@localhost:5432/academic
 
 app = FastAPI()
 validator = SQLValidator(DB_URI)
+
+# Expose /metrics endpoint for Prometheus scraping
+Instrumentator().instrument(app).expose(app)
 
 
 class QueryRequest(BaseModel):

@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from sql_agent import generate_sql
+from prometheus_fastapi_instrumentator import Instrumentator
 import logging
 
 # Configure logging
@@ -12,6 +13,9 @@ app = FastAPI(
     description="API to convert natural language to SQL queries using AI",
     version="1.0.0"
 )
+
+# Expose /metrics endpoint for Prometheus scraping
+Instrumentator().instrument(app).expose(app)
 
 class QueryRequest(BaseModel):
     query: str

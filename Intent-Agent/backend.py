@@ -4,9 +4,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
 from model_runner import extract_intent_payload
+from prometheus_fastapi_instrumentator import Instrumentator
 import uvicorn
 
 app = FastAPI(title="Intent Agent API")
+
+# Expose /metrics endpoint for Prometheus scraping
+Instrumentator().instrument(app).expose(app)
 
 # Enable CORS for Streamlit UI
 app.add_middleware(
