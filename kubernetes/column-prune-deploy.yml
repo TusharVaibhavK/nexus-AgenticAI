@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nexus-column-prune-deploy
-  namespace: nexus1
+  namespace: default
   labels:
     app: nexus-column-prune
 spec:

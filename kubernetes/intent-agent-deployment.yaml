@@ -4,7 +4,7 @@ metadata:
   name: intent-agent
   labels:
     app: intent-agent
-  namespace: nexus1
+  namespace: default
 spec:
   replicas: 2
   selector:
